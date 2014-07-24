@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Cjax",
+  "description": "Make cross domain XHR as you wish",
+  "version": "0.0.1",
+  "background" : {
+    "scripts" : [
+      "js/background.js"
+    ]
+  },
+  "externally_connectable" : {
+    "matches" : [
+      "*://*.dropboxusercontent.com/*"
+    ]
+  },
+  "content_scripts" : [
+    {
+      "matches" : ["*://*.dropboxusercontent.com/*"],
+      "js" : ["js/cjax-loader.js"],
+      "run_at" : "document_start"
+    }
+  ],
+  "web_accessible_resources" : [
+    "js/cjax.js"
+  ],
+  "permissions" : [
+    "<all_urls>"
+  ]
+}
