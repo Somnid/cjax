@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "background" : {
     "scripts" : [
+      "js/ajax.js",
       "js/background.js"
     ]
   },
