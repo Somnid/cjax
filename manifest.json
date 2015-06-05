@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Cjax",
   "description": "Make cross domain XHR as you wish",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "background" : {
     "scripts" : [
       "js/ajax.js",
@@ -16,8 +16,10 @@
   },
   "content_scripts" : [
     {
-      "matches" : ["*://*.dropboxusercontent.com/*"],
-      "js" : ["js/cjax-loader.js"],
+      "matches" : ["<all_urls>"],
+      "js" : [
+        "js/cjax-loader.js"
+      ],
       "run_at" : "document_start"
     }
   ],
