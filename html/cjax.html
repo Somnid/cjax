@@ -1,37 +1,37 @@
 <!doctype html>
 <html>
-	<body>
-		<script>
-		  window.Cjax = (function(){
-        var id = document.getElementById("cjax-ext-id").textContent;
-        
-        function request(data){
-          return new Promise(function(reject, resolve){
-            chrome.runtime.sendMessage(id, data, function(response){
-              resolve(response);
-            });
-          });
-        }
-        return {
-          request : request
-        };
-      })();
-      var queryString = window.location.search.substr(1);
-      var querySplit = queryString.split("&");
-      var keyValues = {};
-      
-      for(var i = 0; i < querySplit.length; i++){
-        var keyvalSplit = querySplit[i].split("=");
-        keyValues[keyvalSplit[0]] = keyvalSplit[1];
-      }
-      
-      Cjax.request({
-        url : keyValues.url,
-        method : keyValues.method,
-        data : keyValues.data
-      }).then(function(response){
-        window.parent.postMessage(response, keyValues.parentUrl);
-      });
-		</script>
-	</body>
+<body>
+	<script>
+		window.Cjax = (function() {
+			var id = document.getElementById("cjax-ext").getAttribute("ext-id");
+
+			function request(data) {
+				return new Promise(function(reject, resolve) {
+					chrome.runtime.sendMessage(id, data, function(response) {
+						resolve(response);
+					});
+				});
+			}
+			return {
+				request: request
+			};
+		})();
+		var queryString = window.location.search.substr(1);
+		var querySplit = queryString.split("&");
+		var keyValues = {};
+
+		for (var i = 0; i < querySplit.length; i++) {
+			var keyvalSplit = querySplit[i].split("=");
+			keyValues[keyvalSplit[0]] = keyvalSplit[1];
+		}
+
+		Cjax.request({
+			url: keyValues.url,
+			method: keyValues.method,
+			data: keyValues.data
+		}).then(function(response) {
+			window.parent.postMessage(response, keyValues.parentUrl);
+		});
+	</script>
+</body>
 </html>
