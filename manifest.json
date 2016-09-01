@@ -5,7 +5,6 @@
     "version": "0.1.0",
     "background": {
         "scripts": [
-            "js/chromep.js",
             "js/background.js"
         ]
     },
